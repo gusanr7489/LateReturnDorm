@@ -58,42 +58,50 @@ int selectDataNo(LateApply * a[], int n) {
     listStudents(a, n);
     printf("Choose number (Cancel : 0) : ");
     scanf("%d", &num);
+
+    if(!num) printf("=> Cancelled\n");
+
     return num;    
 }
 
-void updateStudent(LateApply * a) {
+void updateStudent(LateApply * a[], int n) {
     time_t currentTime;
     struct tm * time_info;
 
     getchar();
     printf("Name : ");
-    fgets(a->name, 20, stdin);
-    a->name[strlen(a->name) - 1] = '\0';
-    printf("DONE\n");
+    fgets(a[n]->name, 20, stdin);
+    a[n]->name[strlen(a[n]->name) - 1] = '\0';
+
     printf("Student ID : ");
-    scanf("%d", &a->std_id);
+    scanf("%d", &a[n]->std_id);
 
     printf("Room Number : ");
-    scanf("%d", &a->room_no);
+    scanf("%d", &a[n]->room_no);
 
     getchar();
     printf("Reason for late return : ");
-    fgets(a->applyReason, 64, stdin);
-    a->applyReason[strlen(a->applyReason) - 1] = '\0';
+    fgets(a[n]->applyReason, 64, stdin);
+    a[n]->applyReason[strlen(a[n]->applyReason) - 1] = '\0';
 
     printf("Studying place : ");
-    fgets(a->place, 64, stdin);
-    a->place[strlen(a->place) - 1] = '\0';
+    fgets(a[n]->place, 64, stdin);
+    a[n]->place[strlen(a[n]->place) - 1] = '\0';
 
     time(&currentTime);
     time_info = localtime(&currentTime);
 
-    strftime(a->apply_time, 20, "%H:%M:%S", time_info);
+    strftime(a[n]->apply_time, 20, "%H:%M:%S", time_info);
 
     printf("=> Updated!\n");
 }
 
-int deleteStudent(LateApply * a);
+int deleteStudent(LateApply * a[], int n) {
+    free(a[n]);
+    a[n] = NULL;
+    printf("=> Deleted!\n");
+    return 1;
+}
 
 int lateApply_menu() {
     int menu;
