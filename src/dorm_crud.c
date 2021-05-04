@@ -1,8 +1,11 @@
 #include "dorm_crud.h"
 
 void readStudents(LateApply a) {
-    printf("%s\t%8d\t%4d\t  %s\t\t%s\t%s\n", a.name, a.std_id, a.room_no, a.applyReason, a.place, a.apply_time);
-    //if(a.return_time != "NULL") printf("%s", a.return_time);
+    printf("%s\t%8d\t%4d\t  %s\t\t%s\t%s", a.name, a.std_id, a.room_no, a.applyReason, a.place, a.apply_time);
+    if(a.return_time == "\0")
+        printf("\n");
+    else 
+        printf("\n", a.return_time);
 }
 
 void listStudents(LateApply *a[], int n) {
