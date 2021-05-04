@@ -52,9 +52,46 @@ int addStudent(LateApply * a) {
     return 1;
 }
 
-int selectDataNo(LateApply * a[], int n);
+int selectDataNo(LateApply * a[], int n) {
+    int num;
 
-void updateStudent(LateApply * a);
+    listStudents(a, n);
+    printf("Choose number (Cancel : 0) : ");
+    scanf("%d", &num);
+    return num;    
+}
+
+void updateStudent(LateApply * a) {
+    time_t currentTime;
+    struct tm * time_info;
+
+    getchar();
+    printf("Name : ");
+    fgets(a->name, 20, stdin);
+    a->name[strlen(a->name) - 1] = '\0';
+    printf("DONE\n");
+    printf("Student ID : ");
+    scanf("%d", &a->std_id);
+
+    printf("Room Number : ");
+    scanf("%d", &a->room_no);
+
+    getchar();
+    printf("Reason for late return : ");
+    fgets(a->applyReason, 64, stdin);
+    a->applyReason[strlen(a->applyReason) - 1] = '\0';
+
+    printf("Studying place : ");
+    fgets(a->place, 64, stdin);
+    a->place[strlen(a->place) - 1] = '\0';
+
+    time(&currentTime);
+    time_info = localtime(&currentTime);
+
+    strftime(a->apply_time, 20, "%H:%M:%S", time_info);
+
+    printf("=> Updated!\n");
+}
 
 int deleteStudent(LateApply * a);
 
