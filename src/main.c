@@ -18,14 +18,25 @@ int main() {
             }
 
         if(menu == 1)
-            listStudents(dorm, count);
+            listStudents(dorm, index);
 
         else if(menu == 2) {
             dorm[count] = (LateApply*)malloc(sizeof(LateApply));
             count += addStudent(dorm[index++]);
         } else if(menu == 3) {
             num = selectDataNo(dorm, count);
-            updateStudent(dorm[num-1]);
+            updateStudent(dorm, num-1);
+        } else if(menu == 4) {
+            num = selectDataNo(dorm, count);
+            if(num > 0) {
+                printf("Are you sure you want to delete selected data? (Yes : 1, No : 0) : ");
+                scanf("%d", &delok);
+
+                if(delok)
+                    count -= deleteStudent(dorm, num-1);
+                else
+                    printf("=> Cancelled\n");
+            }
         }
 
     }
