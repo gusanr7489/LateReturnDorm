@@ -19,6 +19,7 @@ int main() {
 
         if(menu == 1)
             listStudents(dorm, count);
+            
         else if(menu == 2) {
             dorm[count] = (LateApply*)malloc(sizeof(LateApply));
             count += addStudent(dorm[index++]);
