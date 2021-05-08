@@ -28,6 +28,7 @@ int addStudent(LateApply * a) {
     time_info = localtime(&currentTime);
 
     strftime(checkHour, 5, "%H", time_info);
+
     if(atoi(checkHour)<21||atoi(checkHour)>23) {
         printf("Reserve is not available\n");
         return 0;

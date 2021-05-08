@@ -16,7 +16,7 @@ int main() {
 
         if(menu == 0) break;
 
-        if(menu == 1 || menu == 3 || menu == 4)
+        if(menu == 1 || menu == 3 || menu == 4 || menu == 5)
             if(count == 0) {
                 printf("No data available.\n");
                 continue;
