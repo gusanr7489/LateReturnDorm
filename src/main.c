@@ -4,7 +4,7 @@ int main() {
     LateApply * dorm[100];
     LateApply * date[100];
     int count = 0, index = 0;
-    int menu, delok, num;
+    int menu, delok, num, check;
     char filename[20], *searchDay;
 
     search_file_name(searchDay);    
@@ -43,8 +43,17 @@ int main() {
                     printf("=> Cancelled\n");
             }
         } else if(menu==5) {
+            
             strcpy(filename, dorm[index-1]->apply_day);
             saveData(dorm, count, filename);
+            
+            printf("saved!\n\n");
+        } else if(menu == 6) {
+            check = search_std_no(dorm, count);
+            if(check==-1)
+              printf("error\n\n");
+        } else if(menu == 7) {
+            return_dorm(dorm, count);
             printf("saved!\n\n");
         }
 

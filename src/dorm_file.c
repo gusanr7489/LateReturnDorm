@@ -41,3 +41,40 @@ void saveData(LateApply *a[], int n, char filename[]) {
     }
     fclose(fp);
 }
+
+int search_std_no(LateApply *a[], int n) {
+    int i, search_id;
+
+    printf("what's your student ID? : ");
+    scanf("%d",&search_id);
+
+    for(i=0;i<n;i++) {
+        if(search_id == a[i]->std_id) {
+            readStudents(*a[i]);
+            return i;
+        }
+    }
+    return -1;
+}
+
+void return_dorm(LateApply *a[], int n){
+    int i, search_id;
+    time_t currentTime;
+    struct tm * time_info;
+
+    time(&currentTime); 
+    time_info = localtime(&currentTime);
+
+    printf("what's your student ID? : ");
+    scanf("%d",&search_id);
+
+    for(i=0;i<n;i++) {
+        if(search_id == a[i]->std_id) {
+            readStudents(*a[i]);
+            break;
+        }
+    }
+
+    strftime(a[i]->return_time, 20, "%H:%M:%S", time_info);
+
+}

@@ -1,7 +1,7 @@
 #include "dorm_crud.h"
 
 void readStudents(LateApply a) {
-    printf("%s\t%8d\t%4d\t  %s\t\t%s\t%s", a.name, a.std_id, a.room_no, a.applyReason, a.place, a.apply_time);
+    printf("%s\t%8d\t%4d\t  %s\t\t%s\t%s\t%s", a.name, a.std_id, a.room_no, a.applyReason, a.place, a.apply_time, a.return_time);
     if(a.return_time == "\0")
         printf("\n");
     else 
@@ -28,7 +28,7 @@ int addStudent(LateApply * a) {
     time_info = localtime(&currentTime);
 
     strftime(checkHour, 5, "%H", time_info);
-    if(atoi(checkHour)<21||atoi(checkHour>23)) {
+    if(atoi(checkHour)<21||atoi(checkHour)>23) {
         printf("Reserve is not available\n");
         return 0;
     }
@@ -55,6 +55,8 @@ int addStudent(LateApply * a) {
 
     strftime(a->apply_time, 20, "%H:%M:%S", time_info);
     strftime(a->apply_day, 20, "%Y-%m-%d", time_info);
+
+    strcpy(a->return_time, "Not return yet");
 
     printf("=> Added!\n");
     return 1;
@@ -119,6 +121,8 @@ int lateApply_menu() {
     printf("3. Update Student Info\n");
     printf("4. Delete Stduent Info\n");
     printf("5. Save data\n");
+    printf("6. search reserved data\n");
+    printf("7. return dorm\n");
     printf("0. End Program\n\n");
     printf("=> Choose option : ");
     scanf("%d", &menu);
