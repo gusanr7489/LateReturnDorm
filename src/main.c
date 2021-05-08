@@ -30,7 +30,7 @@ int main() {
             count += addStudent(dorm[index++]);
         } else if(menu == 3) {
             num = selectDataNo(dorm, count);
-            updateStudent(dorm, num-1);
+            if(num > 0) updateStudent(dorm, num-1);
         } else if(menu == 4) {
             num = selectDataNo(dorm, count);
             if(num > 0) {
