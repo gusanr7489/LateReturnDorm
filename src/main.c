@@ -1,10 +1,11 @@
-#include "dorm_crud.h"
+#include "dorm_file.h"
 
 int main() {
     LateApply * dorm[100];
     LateApply * date[100];
     int count = 0, index = 0;
     int menu, delok, num;
+    char filename[20];
 
     while(1) {
         menu = lateApply_menu();
@@ -37,6 +38,10 @@ int main() {
                 else
                     printf("=> Cancelled\n");
             }
+        } else if(menu==5) {
+            strcpy(filename, dorm[index]->apply_day);
+            saveData(dorm, count, filename);
+            printf("saved!\n\n");
         }
 
     }

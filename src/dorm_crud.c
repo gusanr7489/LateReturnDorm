@@ -47,7 +47,7 @@ int addStudent(LateApply * a) {
     time_info = localtime(&currentTime);
 
     strftime(a->apply_time, 20, "%H:%M:%S", time_info);
-
+    strftime(a->apply_day, 20, "%Y-%m-%d", time_info);
     printf("=> Added!\n");
     return 1;
 }
