@@ -27,7 +27,7 @@ int main() {
 
         else if(menu == 2) {
             dorm[count] = (LateApply*)malloc(sizeof(LateApply));
-            count += addStudent(dorm[index++]);\
+            count += addStudent(dorm[index++]);
         } else if(menu == 3) {
             num = selectDataNo(dorm, count);
             updateStudent(dorm, num-1);

@@ -22,6 +22,16 @@ void listStudents(LateApply *a[], int n) {
 int addStudent(LateApply * a) {
     time_t currentTime;
     struct tm * time_info;
+    char checkHour[5];
+
+    time(&currentTime); 
+    time_info = localtime(&currentTime);
+
+    strftime(checkHour, 5, "%H", time_info);
+    if(atoi(checkHour)<21||atoi(checkHour>23)) {
+        printf("Reserve is not available\n");
+        return 0;
+    }
 
     getchar();
     printf("Name : ");
@@ -43,11 +53,9 @@ int addStudent(LateApply * a) {
     fgets(a->place, 64, stdin);
     a->place[strlen(a->place) - 1] = '\0';
 
-    time(&currentTime);
-    time_info = localtime(&currentTime);
-
     strftime(a->apply_time, 20, "%H:%M:%S", time_info);
     strftime(a->apply_day, 20, "%Y-%m-%d", time_info);
+
     printf("=> Added!\n");
     return 1;
 }
