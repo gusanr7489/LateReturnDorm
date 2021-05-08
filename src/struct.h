@@ -10,5 +10,6 @@ typedef struct {
     char applyReason[64];
     char place[64];
     char apply_time[20];
+    char apply_day[20];
     char return_time[20];
 } LateApply;
