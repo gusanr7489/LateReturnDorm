@@ -5,7 +5,11 @@ int main() {
     LateApply * date[100];
     int count = 0, index = 0;
     int menu, delok, num;
-    char filename[20];
+    char filename[20], *searchDay;
+
+    search_file_name(searchDay);    
+    count = loadData(dorm, searchDay);
+    index = count;
 
     while(1) {
         menu = lateApply_menu();
@@ -23,7 +27,7 @@ int main() {
 
         else if(menu == 2) {
             dorm[count] = (LateApply*)malloc(sizeof(LateApply));
-            count += addStudent(dorm[index++]);
+            count += addStudent(dorm[index++]);\
         } else if(menu == 3) {
             num = selectDataNo(dorm, count);
             updateStudent(dorm, num-1);
@@ -39,7 +43,7 @@ int main() {
                     printf("=> Cancelled\n");
             }
         } else if(menu==5) {
-            strcpy(filename, dorm[index]->apply_day);
+            strcpy(filename, dorm[index-1]->apply_day);
             saveData(dorm, count, filename);
             printf("saved!\n\n");
         }

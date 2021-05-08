@@ -48,6 +48,7 @@ int addStudent(LateApply * a) {
 
     strftime(a->apply_time, 20, "%H:%M:%S", time_info);
     strftime(a->apply_day, 20, "%Y-%m-%d", time_info);
+    printf("%s", a->apply_day);
     printf("=> Added!\n");
     return 1;
 }
@@ -110,6 +111,7 @@ int lateApply_menu() {
     printf("2. Add Student Info\n");
     printf("3. Update Student Info\n");
     printf("4. Delete Stduent Info\n");
+    printf("5. Save data\n");
     printf("0. End Program\n\n");
     printf("=> Choose option : ");
     scanf("%d", &menu);

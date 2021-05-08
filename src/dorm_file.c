@@ -1,12 +1,36 @@
 #include "dorm_file.h"
 
-int loadData(LateApply *a){
-    
+void search_file_name(char *searchDay){
+    printf("Which day of file would you like to open? ex) 2021-05-08\n");
+    scanf("%s", searchDay);
 }
+
+
+int loadData(LateApply *a[], char *fileName){
+    int i;
+    FILE *fp;
+
+    fp = fopen(fileName, "rt");
+    if(fp == NULL) {
+        printf("No saved file!!\n\n");
+        return 0;
+    }
+    else 
+    for(i=0;i<100;i++) {
+        fscanf(fp,"%s", a[i]->name);
+        if(feof(fp)) break;
+        fscanf(fp,"%d", &a[i]->std_id);
+        fscanf(fp,"%d", &a[i]->room_no);
+        fscanf(fp,"%s", a[i]->applyReason);
+        fscanf(fp, "%s", a[i]->place);
+        fscanf(fp, "%s", a[i]->apply_time);
+    }
+    fclose(fp);
+    return i;
+}
+
 void saveData(LateApply *a[], int n, char filename[]) {
     int i;
-    //char filename[20];
-    //strcpy(filename, a[]->apply_day);
     FILE *fp;
     fp = fopen(filename, "wt");
     for(i=0;i<n;i++) {
