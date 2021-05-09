@@ -2,10 +2,6 @@
 
 void readStudents(LateApply a) {
     printf("%s\t%8d\t%4d\t  %s\t\t%s\t%s\t%s", a.name, a.std_id, a.room_no, a.applyReason, a.place, a.apply_time, a.return_time);
-    if(a.return_time == "\0")
-        printf("\n");
-    else 
-        printf("\n", a.return_time);
 }
 
 void listStudents(LateApply *a[], int n) {
@@ -36,8 +32,8 @@ int addStudent(LateApply * a) {
 
     getchar();
     printf("Name : ");
-    fgets(a->name, 20, stdin);
-    a->name[strlen(a->name) - 1] = '\0';
+    fgets(a->name, 9, stdin);
+    //a->name[strlen(a->name) - 1] = '\0';
 
     printf("Student ID : ");
     scanf("%d", &a->std_id);
@@ -47,17 +43,17 @@ int addStudent(LateApply * a) {
 
     getchar();
     printf("Reason for late return : ");
-    fgets(a->applyReason, 64, stdin);
+    fgets(a->applyReason, 20, stdin);
     a->applyReason[strlen(a->applyReason) - 1] = '\0';
 
     printf("Studying place : ");
-    fgets(a->place, 64, stdin);
+    fgets(a->place, 20, stdin);
     a->place[strlen(a->place) - 1] = '\0';
 
-    strftime(a->apply_time, 20, "%H:%M:%S", time_info);
-    strftime(a->apply_day, 20, "%Y-%m-%d", time_info);
+    strftime(a->apply_time, 10, "%H:%M:%S", time_info);
+    strftime(a->apply_day, 11, "%Y-%m-%d", time_info);
 
-    strcpy(a->return_time, "Not return yet");
+    strcpy(a->return_time, "N/A");
 
     printf("=> Added!\n");
     return 1;
@@ -81,8 +77,8 @@ void updateStudent(LateApply * a[], int n) {
 
     getchar();
     printf("Name : ");
-    fgets(a[n]->name, 20, stdin);
-    a[n]->name[strlen(a[n]->name) - 1] = '\0';
+    fgets(a[n]->name, 9, stdin);
+    //a[n]->name[strlen(a[n]->name) - 1] = '\0';
 
     printf("Student ID : ");
     scanf("%d", &a[n]->std_id);
@@ -92,17 +88,17 @@ void updateStudent(LateApply * a[], int n) {
 
     getchar();
     printf("Reason for late return : ");
-    fgets(a[n]->applyReason, 64, stdin);
+    fgets(a[n]->applyReason, 20, stdin);
     a[n]->applyReason[strlen(a[n]->applyReason) - 1] = '\0';
 
     printf("Studying place : ");
-    fgets(a[n]->place, 64, stdin);
+    fgets(a[n]->place, 20, stdin);
     a[n]->place[strlen(a[n]->place) - 1] = '\0';
 
     time(&currentTime);
     time_info = localtime(&currentTime);
 
-    strftime(a[n]->apply_time, 20, "%H:%M:%S", time_info);
+    strftime(a[n]->apply_time, 10, "%H:%M:%S", time_info);
 
     printf("=> Updated!\n");
 }
@@ -122,8 +118,8 @@ int lateApply_menu() {
     printf("3. Update Student Info\n");
     printf("4. Delete Stduent Info\n");
     printf("5. Save data\n");
-    printf("6. search reserved data\n");
-    printf("7. return dorm\n");
+    printf("6. Search reserved data\n");
+    printf("7. Return dorm\n");
     printf("0. End Program\n\n");
     printf("=> Choose option : ");
     scanf("%d", &menu);

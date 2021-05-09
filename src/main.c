@@ -26,12 +26,17 @@ int main() {
             listStudents(dorm, index);
 
         else if(menu == 2) {
+
             dorm[count] = (LateApply*)malloc(sizeof(LateApply));
             count += addStudent(dorm[index++]);
+
         } else if(menu == 3) {
+
             num = selectDataNo(dorm, count);
             if(num > 0) updateStudent(dorm, num-1);
+
         } else if(menu == 4) {
+
             num = selectDataNo(dorm, count);
             if(num > 0) {
                 printf("Are you sure you want to delete selected data? (Yes : 1, No : 0) : ");
@@ -42,20 +47,26 @@ int main() {
                 else
                     printf("=> Cancelled\n");
             }
+
         } else if(menu==5) {
             
             strcpy(filename, dorm[index-1]->apply_day);
+            strcat(filename, ".txt");
             saveData(dorm, count, filename);
-            
-            printf("saved!\n\n");
+            printf("Saved!\n\n");
+
         } else if(menu == 6) {
+
             check = search_std_no(dorm, count);
             if(check==-1)
-              printf("error\n\n");
+              printf("Error\n\n");
+
         } else if(menu == 7) {
             return_dorm(dorm, count);
-            printf("saved!\n\n");
+            printf("Saved!\n\n");
         }
-
     }
+
+    printf("Program closed.\n");
+    return 0;
 }
