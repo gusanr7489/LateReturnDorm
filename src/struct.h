@@ -4,12 +4,12 @@
 #include <time.h>
 
 typedef struct {
-    char name[20];
+    char name[9];
     int std_id;
     int room_no;
-    char applyReason[64];
-    char place[64];
-    char apply_time[20];
-    char apply_day[20];
-    char return_time[20];
+    char applyReason[20];
+    char place[20];
+    char apply_time[10];
+    char apply_day[11];
+    char return_time[10];
 } LateApply;
