@@ -6,8 +6,8 @@ int main() {
     int count = 0, index = 0;
     int menu, delok, num, check;
     char filename[20], *searchDay;
-
-    search_file_name(searchDay);    
+    
+    search_file_name(searchDay); 
     count = loadData(dorm, searchDay);
     index = count;
 
