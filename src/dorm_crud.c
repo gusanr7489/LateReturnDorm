@@ -25,7 +25,7 @@ int addStudent(LateApply * a) {
 
     strftime(checkHour, 5, "%H", time_info);
 
-    /*if(atoi(checkHour)<21||atoi(checkHour)>23) {
+    /*if(atoi(checkHour) < 21 || atoi(checkHour) > 23) {
         printf("Reserve is not available\n");
         return 0;
     }*/
@@ -33,7 +33,6 @@ int addStudent(LateApply * a) {
     getchar();
     printf("Name : ");
     fgets(a->name, 9, stdin);
-    //a->name[strlen(a->name) - 1] = '\0';
 
     printf("Student ID : ");
     scanf("%d", &a->std_id);
