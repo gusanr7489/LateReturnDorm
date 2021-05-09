@@ -8,9 +8,8 @@ void search_file_name(char *searchDay){
 
 int loadData(LateApply *a[], char *fileName){
     int i;
+    int length;
     FILE *fp;
-
-    printf("%s\n\n", fileName);
 
     fp = fopen(fileName, "rt");
     if(fp == NULL) {
@@ -22,10 +21,12 @@ int loadData(LateApply *a[], char *fileName){
         a[i] = (LateApply*)malloc(sizeof(LateApply));
         if(feof(fp)) break;
         fscanf(fp, "%s", a[i]->name);
-        fscanf(fp, "%d", a[i]->std_id);
+        fscanf(fp, "%d", &a[i]->std_id);
         fscanf(fp, "%d", &a[i]->room_no);
         fscanf(fp, "%s", a[i]->applyReason);
-        fscanf(fp, "%s", a[i]->place);
+        fgets(a[i]->place, 20, fp);
+        printf("%ld\n\n", strlen(a[i]->place));
+        //fscanf(fp, "%s", a[i]->place);
         fscanf(fp, "%s", a[i]->apply_time);
         fscanf(fp, "%s", a[i]->return_time);
     }
@@ -42,7 +43,8 @@ void saveData(LateApply *a[], int n, char filename[]) {
     for(i=0;i<n;i++) {
         if(a[i]==NULL) 
             continue;
-        fprintf(fp,"%s %d %d %s %s %s %s\n", a[i]->name, a[i]->std_id, a[i]->room_no, a[i]->applyReason, a[i]->place, a[i]->apply_time, a[i]->return_time);
+        fprintf(fp,"%s %d %d %s %20s %s %s", a[i]->name, a[i]->std_id, a[i]->room_no, a[i]->applyReason, a[i]->place, a[i]->apply_time, a[i]->return_time);
+        if(a[i+1] != NULL) printf("\n");
     }
 
     fclose(fp);

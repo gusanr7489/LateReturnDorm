@@ -33,6 +33,7 @@ int addStudent(LateApply * a) {
     getchar();
     printf("Name : ");
     fgets(a->name, 9, stdin);
+    a->name[strlen(a->name) - 1] = '\0';
 
     printf("Student ID : ");
     scanf("%d", &a->std_id);
