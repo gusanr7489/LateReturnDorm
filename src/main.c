@@ -4,11 +4,13 @@ int main() {
     LateApply * dorm[100];  
     int count = 0, index = 0;
     int menu, delok, num, check;
-    char filename[20], *searchDay;
-    searchDay = NULL;
+    char filename[20], searchDay[20];
+
     search_file_name(searchDay); 
     count = loadData(dorm, searchDay);
     index = count;
+
+    //printf("%s\n", dorm[1]->name); //test
 
     while(1) {
         menu = lateApply_menu();
