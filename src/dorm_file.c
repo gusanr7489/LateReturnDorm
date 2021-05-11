@@ -24,12 +24,13 @@ int loadData(LateApply *a[], char *fileName){
         fscanf(fp, "%d", &a[i]->std_id);
         fscanf(fp, "%d", &a[i]->room_no);
         fscanf(fp, "%s", a[i]->applyReason);
-        fgets(a[i]->place, 20, fp);
+        fgets(a[i]->place, 10, fp);
         printf("%ld\n\n", strlen(a[i]->place));
         //fscanf(fp, "%s", a[i]->place);
         fscanf(fp, "%s", a[i]->apply_time);
         fscanf(fp, "%s", a[i]->return_time);
     }
+    
     fclose(fp);
 
     printf("=> Succesfully loaded!\n");
@@ -78,7 +79,7 @@ void return_dorm(LateApply *a[], int n){
 
     printf("NO  Name\tStudent ID\tRoom No\t  Reason\tPlace\t\tApply Time\tReturn Time\n");
     printf("====================================================================================================\n");
-    for(i=0;i<n;i++) {
+    for(i=0;i<n;i++) {  
         if(search_id == a[i]->std_id) {
             break;
         }
