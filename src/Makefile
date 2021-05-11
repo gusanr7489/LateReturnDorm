@@ -6,10 +6,10 @@ OBJECTS = main.c dorm_crud.o dorm_file.o
 all : $(TARGET)
 
 $(TARGET) : $(OBJECTS)
-        $(CC) $(CFLAGS) o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 deltxt :
-        rm dorms.txt
+	rm dorms.txt
 
 clean :
-        rm *.o LateApply
+	rm *.o LateApply
