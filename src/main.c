@@ -1,8 +1,7 @@
 #include "dorm_file.h"
 
 int main() {
-    LateApply * dorm[100];
-    LateApply * date[100];
+    LateApply * dorm[100];  
     int count = 0, index = 0;
     int menu, delok, num, check;
     char filename[20], *searchDay;
