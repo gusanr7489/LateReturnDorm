@@ -3,13 +3,14 @@
 void search_file_name(char *searchDay){
     printf("Which day of file would you like to open? ex) 2021-05-08\n");
     scanf("%s", searchDay);
-    strcat(searchDay, ".txt");
+    //strcat(searchDay, ".txt");
 }
 
 int loadData(LateApply *a[], char *fileName){
     int i;
-    int length;
     FILE *fp;
+    
+    strcat(fileName, ".txt");
 
     fp = fopen(fileName, "rt");
     if(fp == NULL) {
@@ -19,22 +20,20 @@ int loadData(LateApply *a[], char *fileName){
 
     for(i = 0; i < 100; i++) {
         a[i] = (LateApply*)malloc(sizeof(LateApply));
+        fscanf(fp, "%s", a[i]->name); 
+        fscanf(fp, "%d", &a[i]->std_id); 
+        fscanf(fp, "%d", &a[i]->room_no); 
+        fscanf(fp, "%s ", a[i]->applyReason);
+        fgets(a[i]->place, 13, fp); 
+        fscanf(fp, "%s", a[i]->apply_time); 
+        fscanf(fp, "%s\n", a[i]->return_time); 
         if(feof(fp)) break;
-        fscanf(fp, "%s", a[i]->name);
-        fscanf(fp, "%d", &a[i]->std_id);
-        fscanf(fp, "%d", &a[i]->room_no);
-        fscanf(fp, "%s", a[i]->applyReason);
-        fgets(a[i]->place, 10, fp);
-        printf("%ld\n\n", strlen(a[i]->place));
-        //fscanf(fp, "%s", a[i]->place);
-        fscanf(fp, "%s", a[i]->apply_time);
-        fscanf(fp, "%s", a[i]->return_time);
     }
     
     fclose(fp);
 
     printf("=> Succesfully loaded!\n");
-    return i;
+    return i+1;
 }
 
 void saveData(LateApply *a[], int n, char filename[]) {
@@ -44,8 +43,9 @@ void saveData(LateApply *a[], int n, char filename[]) {
     for(i=0;i<n;i++) {
         if(a[i]==NULL) 
             continue;
-        fprintf(fp,"%s %d %d %s %20s %s %s", a[i]->name, a[i]->std_id, a[i]->room_no, a[i]->applyReason, a[i]->place, a[i]->apply_time, a[i]->return_time);
-        if(a[i+1] != NULL) printf("\n");
+        fprintf(fp,"%s %d %d %s %s  %s  %s", a[i]->name, a[i]->std_id, a[i]->room_no, a[i]->applyReason, a[i]->place, a[i]->apply_time, a[i]->return_time);
+        //if(a[i+1] != NULL) 
+        fprintf(fp,"\n");
     }
 
     fclose(fp);
