@@ -26,6 +26,9 @@ int addStudent(LateApply * a) {
 
     strftime(checkHour, 5, "%H", time_info);
 
+    // 현재 실제 시간에 따라서 늦은귀관 신청을 가능하게 해주는 코드
+    // 21시부터 23시 사이의 시간이 아니라면 늦은귀관 신청을 하지 못 함.
+    // 프로그램 구현단계에서 각 함수 테스트를 위해 주석처리를 해놓음.
     /*if(atoi(checkHour) < 21 || atoi(checkHour) > 23) {
         printf("Reserve is not available\n");
         return 0;
@@ -75,6 +78,20 @@ int selectDataNo(LateApply * a[], int n) {
 void updateStudent(LateApply * a[], int n) {
     time_t currentTime;
     struct tm * time_info;
+    char checkHour[5];
+
+    time(&currentTime); 
+    time_info = localtime(&currentTime);
+
+    strftime(checkHour, 5, "%H", time_info);
+
+    // 현재 실제 시간에 따라서 늦은귀관 신청을 가능하게 해주는 코드
+    // 21시부터 23시 사이의 시간이 아니라면 늦은귀관 신청을 하지 못 함.
+    // 프로그램 구현단계에서 각 함수 테스트를 위해 주석처리를 해놓음.
+    /*if(atoi(checkHour) < 21 || atoi(checkHour) > 23) {
+        printf("Reserve is not available\n");
+        return 0;
+    }*/
 
     getchar();
     printf("Name : ");
@@ -96,10 +113,10 @@ void updateStudent(LateApply * a[], int n) {
     fgets(a[n]->place, 20, stdin);
     a[n]->place[strlen(a[n]->place) - 1] = '\0';
 
-    time(&currentTime);
-    time_info = localtime(&currentTime);
-
     strftime(a[n]->apply_time, 10, "%H:%M:%S", time_info);
+    strftime(a[n]->apply_day, 11, "%Y-%m-%d", time_info);
+
+    strcpy(a[n]->return_time, "N/A");
 
     printf("=> Updated!\n");
 }
