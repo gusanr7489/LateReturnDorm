@@ -79,7 +79,7 @@ void updateStudent(LateApply * a[], int n) {
     getchar();
     printf("Name : ");
     fgets(a[n]->name, 9, stdin);
-    //a[n]->name[strlen(a[n]->name) - 1] = '\0';
+    a[n]->name[strlen(a[n]->name) - 1] = '\0';
 
     printf("Student ID : ");
     scanf("%d", &a[n]->std_id);
