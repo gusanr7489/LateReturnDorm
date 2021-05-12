@@ -1,9 +1,9 @@
 #include "dorm_file.h"
 
+
 void search_file_name(char *searchDay){
     printf("Which day of file would you like to open? ex) 2021-05-08\n");
     scanf("%s", searchDay);
-    //strcat(searchDay, ".txt");
 }
 
 int loadData(LateApply *a[], char *fileName){
@@ -44,7 +44,6 @@ void saveData(LateApply *a[], int n, char filename[]) {
         if(a[i]==NULL) 
             continue;
         fprintf(fp,"%s %d %d %s %s  %s  %s", a[i]->name, a[i]->std_id, a[i]->room_no, a[i]->applyReason, a[i]->place, a[i]->apply_time, a[i]->return_time);
-        //if(a[i+1] != NULL) 
         fprintf(fp,"\n");
     }
 
