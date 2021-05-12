@@ -10,8 +10,6 @@ int main() {
     count = loadData(dorm, searchDay);
     index = count;
 
-    //printf("%s\n", dorm[1]->name); //test
-
     while(1) {
         menu = lateApply_menu();
 
