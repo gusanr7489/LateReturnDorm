@@ -56,6 +56,8 @@ int search_std_no(LateApply *a[], int n) {
     printf("what's your student ID? : ");
     scanf("%d",&search_id);
 
+    printf("\nName\tStudent ID\tRoom No\t  Reason\tPlace\t\tApply Time\tReturn Time\n");
+    printf("====================================================================================================\n");
     for(i=0;i<n;i++) {
         if(search_id == a[i]->std_id) {
             readStudents(*a[i]);
