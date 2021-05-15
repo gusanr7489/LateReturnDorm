@@ -1,7 +1,7 @@
 #include "dorm_crud.h"
 
 void readStudents(LateApply a) {
-    printf("%s\t%8d\t%4d\t  %s\t\t%s\t%s\t%s", a.name, a.std_id, a.room_no, a.applyReason, a.place, a.apply_time, a.return_time);
+    printf("%s\t%8d\t%-4d\t  %s\t\t%s\t%s\t%s", a.name, a.std_id, a.room_no, a.applyReason, a.place, a.apply_time, a.return_time);
     printf("\n");
 }
 
