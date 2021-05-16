@@ -1,16 +1,17 @@
 #include "dorm_file.h"
 
-
+// 파일명 입력받는 함수
 void search_file_name(char *searchDay){
     printf("Which day of file would you like to open? ex) 2021-05-08\n");
-    scanf("%s", searchDay);
+    scanf("%s", searchDay);  
 }
 
+//파일명 데이터 불러오는 함수
 int loadData(LateApply *a[], char *fileName){
     int i;
     FILE *fp;
     
-    strcat(fileName, ".txt");
+    strcat(fileName, ".txt"); 
 
     fp = fopen(fileName, "rt");
     if(fp == NULL) {
@@ -36,6 +37,7 @@ int loadData(LateApply *a[], char *fileName){
     return i+1;
 }
 
+//현재 날짜로 파일명 텍스트 파일 만들고 데이터 저장해주는 함수
 void saveData(LateApply *a[], int n, char filename[]) {
     int i;
     FILE *fp;
@@ -50,6 +52,7 @@ void saveData(LateApply *a[], int n, char filename[]) {
     fclose(fp);
 }
 
+//학번으로 데이터 정보 찾는 함수
 int search_std_no(LateApply *a[], int n) {
     int i, search_id;
 
@@ -67,6 +70,7 @@ int search_std_no(LateApply *a[], int n) {
     return -1;
 }
 
+//늦귀 복귀 시간 입력하는 함수
 void return_dorm(LateApply *a[], int n){
     int i, search_id;
     time_t currentTime;
