@@ -42,8 +42,8 @@ void saveData(LateApply *a[], int n, char filename[]) {
     int i;
     FILE *fp;
     fp = fopen(filename, "wt");
-    for(i=0;i<n;i++) {
-        if(a[i]==NULL) 
+    for(i = 0; i < n; i++) {
+        if(a[i] == NULL) 
             continue;
         fprintf(fp,"%s %d %d %s %s  %s  %s", a[i]->name, a[i]->std_id, a[i]->room_no, a[i]->applyReason, a[i]->place, a[i]->apply_time, a[i]->return_time);
         fprintf(fp,"\n");
@@ -53,42 +53,53 @@ void saveData(LateApply *a[], int n, char filename[]) {
 }
 
 //학번으로 데이터 정보 찾는 함수
-int search_std_no(LateApply *a[], int n) {
-    int i, search_id;
-
-    printf("what's your student ID? : ");
-    scanf("%d",&search_id);
+void search_std_no(LateApply *a[], int n, int x) {
+    int i;
 
     printf("\nName\tStudent ID\tRoom No\t  Reason\tPlace\t\tApply Time\tReturn Time\n");
-    printf("====================================================================================================\n");
-    for(i=0;i<n;i++) {
-        if(search_id == a[i]->std_id) {
+    printf("============================================================================================\n");
+    for(int i = 0; i < n; i++) {
+        if(x == a[i]->std_id) {
             readStudents(*a[i]);
-            return i;
+            break;
         }
     }
-    return -1;
 }
 
 //늦귀 복귀 시간 입력하는 함수
-void return_dorm(LateApply *a[], int n){
-    int i, search_id;
+void return_dorm(LateApply *a[], int n, int x){
+    int i;
     time_t currentTime;
     struct tm * time_info;
 
     time(&currentTime); 
     time_info = localtime(&currentTime);
 
-    printf("what's your student ID? : ");
-    scanf("%d",&search_id);
-
-    printf("NO  Name\tStudent ID\tRoom No\t  Reason\tPlace\t\tApply Time\tReturn Time\n");
-    printf("====================================================================================================\n");
-    for(i=0;i<n;i++) {  
-        if(search_id == a[i]->std_id) {
+    printf("\nName\tStudent ID\tRoom No\t  Reason\tPlace\t\tApply Time\tReturn Time\n");
+    printf("============================================================================================\n");
+    for(i = 0; i < n; i++) {  
+        if(x == a[i]->std_id) {
+            strftime(a[i]->return_time, 20, "%H:%M:%S", time_info);
+            readStudents(*a[i]);
             break;
         }
     }
-    strftime(a[i]->return_time, 20, "%H:%M:%S", time_info);
-    readStudents(*a[i]);
+    
+    printf("\nSaved!\n\n");
+}
+
+//학번 입력받는 함수
+int getStdID(LateApply *a[], int n) {
+    int stdid;
+
+    printf("what's your student ID? : ");
+    scanf("%d", &stdid);
+
+    for(int i = 0; i < n; i++) {  
+        if(stdid == a[i]->std_id) {
+            return stdid;
+        }
+    }
+
+    return -1;
 }
