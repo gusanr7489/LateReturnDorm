@@ -1,13 +1,13 @@
 #include "dorm_crud.h"
 
-int loadData(LateApply *a[], char *fileName); // ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+int loadData(LateApply *a[], char *fileName); // ÇÁ·Î±×·¥ ½ÃÀÛÇÒ ¶§ ³¯Â¥º°·Î Á¤¸®µÈ Æ¯Á¤ ÆÄÀÏÀÇ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿À´Â ÇÔ¼ö
 
-void saveData(LateApply *a[], int n, char filename[20]); // ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+void saveData(LateApply *a[], int n, char filename[20]); // ÀÔ·ÂÇÑ µ¥ÀÌÅÍµéÀ» ÆÄÀÏ¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
 
-void search_file_name(char * searchDay); // loadData ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ Ã£ï¿½ï¿½ ï¿½Ô¼ï¿½
+void search_file_name(char * searchDay); // loadData ÇÔ¼ö¿¡ ÇÊ¿äÇÑ ÆÄÀÏ¸í Ã£±â ÇÔ¼ö
 
-void search_std_no(LateApply *a[], int n, int x);  // ï¿½Ð¹ï¿½ ï¿½Ô·ï¿½ï¿½Ï¸ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+void search_std_no(LateApply *a[], int n, int x);  // ÇÐ¹ø ÀÔ·ÂÇÏ¸é ÇØ´ç µ¥ÀÌÅÍ ºÒ·¯¿À´Â ÇÔ¼ö
 
-void return_dorm(LateApply *a[], int n, int x); // ï¿½ï¿½ï¿½ï¿½ï¿? ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ô·Â¹Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+void return_dorm(LateApply *a[], int n, int x); // ±â¼÷»ç ¸®ÅÏ ½Ã°£À» ÀÔ·Â¹Þ¾Æ µ¥ÀÌÅÍ¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
 
 int getStdID(LateApply *a[], int n); //ÇÐ¹ø ÀÔ·Â¹Þ´Â ÇÔ¼ö
