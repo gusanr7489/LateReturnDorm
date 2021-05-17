@@ -3,7 +3,7 @@
 int main() {
     LateApply * dorm[100];  
     int count = 0, index = 0;
-    int menu, delok, num, check;
+    int menu, delok, num, stdID;
     char filename[20], searchDay[20];
 
     search_file_name(searchDay); 
@@ -47,7 +47,7 @@ int main() {
                     printf("=> Cancelled\n");
             }
 
-        } else if(menu==5) {
+        } else if(menu == 5) {
             
             strcpy(filename, dorm[index-1]->apply_day);
             strcat(filename, ".txt");
@@ -56,13 +56,23 @@ int main() {
 
         } else if(menu == 6) {
 
-            check = search_std_no(dorm, count);
-            if(check==-1)
-              printf("Error\n\n");
+            stdID = getStdID(dorm, count);
+
+            if(stdID == -1)
+                printf("\nNo Matching Student ID found!\n\n");
+            else {
+                search_std_no(dorm, count, stdID);
+            }
 
         } else if(menu == 7) {
-            return_dorm(dorm, count);
-            printf("Saved!\n\n");
+
+            stdID = getStdID(dorm, count);
+
+            if(stdID == -1)
+                printf("\nNo Matching Student ID found!\n\n");
+            else {
+                return_dorm(dorm, count, stdID);
+            }
         }
     }
 
